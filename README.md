@@ -1,8 +1,8 @@
 # About
 
-This is the GameHub Project repository, a robust platform equipped with advanced search capabilities, and dynamic filtering options for a wide range of video games to cater to every gamer's needs. Dive into the detailed game description page for game trailers and screenshots.
+This is the GameHub Project repository, a robust and responsive website equipped with advanced search capabilities, and dynamic filtering options for a wide range of video games to cater to every gamer's needs. Dive into the detailed game page for game description, trailers, and screenshots.
 
-This project is based on Vite and utilized chakra UI for styling, Zustand for state management, Axios for communication to the backend, Vecel for deployment, and etc.
+This project is based on Vite and utilized Chakra UI for styling, Zustand for state management, Axios for communication to the backend, Vecel for deployment, etc.
 
 You can find the working project at: https://game-hub-mauve-pi.vercel.app/
 
