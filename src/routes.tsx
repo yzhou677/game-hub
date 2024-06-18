@@ -1,10 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
-import Layout from "./pages/Layout";
-import HomePage from "./pages/HomePage";
-import GameDetailPage from "./pages/GameDetailPage";
+import { RouteObject, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
+import GameDetailPage from "./pages/GameDetailPage";
+import HomePage from "./pages/HomePage";
+import Layout from "./pages/Layout";
 
-const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <Layout />,
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+const router = createBrowserRouter(routes);
 
 export default router;

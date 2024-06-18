@@ -17,7 +17,7 @@ const GenreList = () => {
   const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
 
   if (error) return null;
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner role="status" aria-label="Loading" />;
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
@@ -32,6 +32,7 @@ const GenreList = () => {
                 borderRadius={8}
                 objectFit="cover"
                 src={getCroppedImageUrl(genre.image_background)}
+                id={genre.name}
               />
               <Button
                 whiteSpace="normal"
