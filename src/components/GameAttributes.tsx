@@ -1,5 +1,6 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { HStack, Icon, SimpleGrid, Text } from "@chakra-ui/react";
 import Game from "../entities/Game";
+import { iconMap } from "../entities/iconMap";
 import CriticScore from "./CriticScore";
 import DefinitionItem from "./DefinitionItem";
 
@@ -12,7 +13,14 @@ const GameAttributes = ({ game }: Props) => {
     <SimpleGrid columns={2} as="dl">
       <DefinitionItem term="Platforms">
         {game.parent_platforms?.map(({ platform }) => (
-          <Text key={platform.id}>{platform.name}</Text>
+          <HStack key={platform.id} spacing={2}>
+            <Icon
+              as={iconMap[platform.slug]}
+              color="gray.500"
+              data-testid={`icon-${platform.slug}`}
+            />
+            <Text>{platform.name}</Text>
+          </HStack>
         ))}
       </DefinitionItem>
       <DefinitionItem term="Metascore">
