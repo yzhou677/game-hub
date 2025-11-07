@@ -11,7 +11,7 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 
-export const iconMap: { [key: string]: IconType } = {
+const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
     playstation: FaPlaystation,
     xbox: FaXbox,
@@ -22,3 +22,5 @@ export const iconMap: { [key: string]: IconType } = {
     web: BsGlobe,
     android: FaAndroid,
 };
+
+export default iconMap;

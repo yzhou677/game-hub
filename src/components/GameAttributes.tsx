@@ -1,6 +1,6 @@
 import { HStack, Icon, SimpleGrid, Text } from "@chakra-ui/react";
 import Game from "../entities/Game";
-import { iconMap } from "../entities/iconMap";
+import iconMap from "../entities/IconMap";
 import CriticScore from "./CriticScore";
 import DefinitionItem from "./DefinitionItem";
 
