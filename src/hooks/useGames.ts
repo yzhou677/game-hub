@@ -24,7 +24,7 @@ const useGames = () => {
             return lastPage.next ? allPages.length + 1 : undefined;
         }, //react query uses this function to compute next page number
         staleTime: ms('24h') //24h
-    })
-}
+    });
+};
     
 export default useGames;

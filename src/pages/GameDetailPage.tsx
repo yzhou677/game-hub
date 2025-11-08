@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import GameSwiperGallery from "../components/GameSwiperGallery";
+import SimilarGames from "../components/SimilarGames";
 import useGame from "../hooks/useGame";
 
 const GameDetailPage = () => {
@@ -43,7 +44,7 @@ const GameDetailPage = () => {
       <Container maxW="container.xl" py={6} zIndex={0}>
         <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="start">
           <GridItem>
-            <Heading size="lg" mb={4}>
+            <Heading size="xl" mb={4}>
               {game.name}
             </Heading>
             <Box
@@ -65,6 +66,9 @@ const GameDetailPage = () => {
             </Box>
           </GridItem>
         </SimpleGrid>
+        <Box mt={12}>
+          <SimilarGames game={game} />
+        </Box>
       </Container>
     </>
   );
