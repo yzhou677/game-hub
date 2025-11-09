@@ -33,18 +33,20 @@ const RatingBadge = ({
       </Text>
 
       <HStack spacing={6} flexWrap="wrap">
-        {ratings.map((r) => {
-          const colorInfo = ratingsColorMap[r.id];
-          return (
-            <HStack key={r.id} spacing={2}>
-              <Circle size="10px" bg={colorInfo?.color ?? "gray.500"} />
-              <Text fontWeight="bold" textTransform="capitalize">
-                {colorInfo?.title ?? r.title}
-              </Text>
-              <Text color="gray.400">{r.count}</Text>
-            </HStack>
-          );
-        })}
+        {[...ratings]
+          .sort((a, b) => b.id - a.id)
+          .map((r) => {
+            const colorInfo = ratingsColorMap[r.id];
+            return (
+              <HStack key={r.id} spacing={2}>
+                <Circle size="10px" bg={colorInfo?.color ?? "gray.500"} />
+                <Text fontWeight="bold" textTransform="capitalize">
+                  {colorInfo?.title ?? r.title}
+                </Text>
+                <Text color="gray.400">{r.count}</Text>
+              </HStack>
+            );
+          })}
       </HStack>
     </>
   );
