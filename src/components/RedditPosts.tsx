@@ -3,7 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import useRedditPosts from "../hooks/useRedditPosts";
 import RedditPostCard from "./RedditPostCard";
 
-export default function RedditPosts({ id }: { id: number }) {
+const RedditPosts = ({ id }: { id: number }) => {
   const { data, error, fetchNextPage, hasNextPage } = useRedditPosts(id);
   if (error) return;
 
@@ -31,4 +31,6 @@ export default function RedditPosts({ id }: { id: number }) {
       </InfiniteScroll>
     </Box>
   );
-}
+};
+
+export default RedditPosts;

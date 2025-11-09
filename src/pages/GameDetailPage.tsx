@@ -1,11 +1,4 @@
-import {
-  Box,
-  Container,
-  GridItem,
-  Heading,
-  SimpleGrid,
-  Spinner,
-} from "@chakra-ui/react";
+import { Box, GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
@@ -42,7 +35,7 @@ const GameDetailPage = () => {
         zIndex={-1}
         pointerEvents="none"
       />
-      <Container maxW="container.xl" py={6} zIndex={0}>
+      <Box maxW="container.xl" py={6} zIndex={0}>
         <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="start">
           <GridItem>
             <Heading size="xl" mb={4}>
@@ -73,7 +66,7 @@ const GameDetailPage = () => {
         <Box mt={12}>
           <RedditPosts id={game.id} />
         </Box>
-      </Container>
+      </Box>
     </>
   );
 };
