@@ -10,4 +10,13 @@ const ratingMap: {
     5: { label: "Exceptional", src: bullsEye, alt: "exceptional", boxSize: "35px" },
 };
 
+export const ratingsColorMap: {
+    [key: number]: { title: string; color: string }
+} = {
+    1: {title: "skip", color: "red.400"},
+    3: {title: "meh", color: "orange.400"},
+    4: {title: "recommended", color: "blue.400"},
+    5: {title: "exceptional", color: "green.400"}
+}
+
 export default ratingMap;

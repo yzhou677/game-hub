@@ -8,6 +8,8 @@ export default function RedditPosts({ id }: { id: number }) {
   if (error) return;
 
   const posts = data?.pages.flatMap((p) => p.results) ?? [];
+  if (posts.length <= 0) return;
+
   const fetchedGamesCount = posts.length;
 
   return (
@@ -23,8 +25,7 @@ export default function RedditPosts({ id }: { id: number }) {
       >
         <VStack spacing={6} align="stretch">
           {posts.map((p) => {
-            console.log(p);
-            return <RedditPostCard redditPost={p} />;
+            return <RedditPostCard redditPost={p} key={p.id} />;
           })}
         </VStack>
       </InfiniteScroll>

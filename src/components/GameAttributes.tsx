@@ -13,7 +13,11 @@ interface Props {
 const GameAttributes = ({ game }: Props) => {
   return (
     <Box>
-      <RatingBadge rating={game.rating_top} reviewCount={game.reviews_count} />
+      <RatingBadge
+        rating={game.rating_top}
+        reviewCount={game.reviews_count}
+        ratings={game.ratings}
+      />
       <SimpleGrid columns={2} as="dl">
         <DefinitionItem term="Platforms">
           {game.parent_platforms?.map(({ platform }) => (
@@ -47,6 +51,13 @@ const GameAttributes = ({ game }: Props) => {
           <Text>
             <Link href={game.website} color="teal.300" isExternal>
               {game.name}
+            </Link>
+          </Text>
+        </DefinitionItem>
+        <DefinitionItem term="Metacritic Review">
+          <Text>
+            <Link href={game.metacritic_url} color="teal.300" isExternal>
+              Review of {game.name}
             </Link>
           </Text>
         </DefinitionItem>

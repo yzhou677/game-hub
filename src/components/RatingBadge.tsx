@@ -1,12 +1,14 @@
-import { Heading, HStack, Image, Text } from "@chakra-ui/react";
-import ratingMap from "../entities/RatingMap";
+import { Circle, Heading, HStack, Image, Text } from "@chakra-ui/react";
+import ratingMap, { ratingsColorMap } from "../entities/RatingMap";
 
 const RatingBadge = ({
   rating,
   reviewCount,
+  ratings,
 }: {
   rating: number;
   reviewCount: number;
+  ratings: { id: number; title: string; count: number; percent: number }[];
 }) => {
   if (rating < 3) return null;
   const ratingInfo = ratingMap[rating];
@@ -29,6 +31,21 @@ const RatingBadge = ({
       >
         {reviewCount} RATINGS
       </Text>
+
+      <HStack spacing={6} flexWrap="wrap">
+        {ratings.map((r) => {
+          const colorInfo = ratingsColorMap[r.id];
+          return (
+            <HStack key={r.id} spacing={2}>
+              <Circle size="10px" bg={colorInfo?.color ?? "gray.500"} />
+              <Text fontWeight="bold" textTransform="capitalize">
+                {colorInfo?.title ?? r.title}
+              </Text>
+              <Text color="gray.400">{r.count}</Text>
+            </HStack>
+          );
+        })}
+      </HStack>
     </>
   );
 };

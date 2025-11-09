@@ -1,5 +1,4 @@
 import { Box, Button, Heading, SimpleGrid } from "@chakra-ui/react";
-import React from "react";
 import Game from "../entities/Game";
 import useSimilarGames from "../hooks/useSimilarGames";
 import GameCard from "./GameCard";
@@ -13,6 +12,9 @@ interface Props {
 const SimilarGames = ({ game }: Props) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useSimilarGames(game);
+
+  const games = data?.pages.flatMap((p) => p.results) ?? [];
+  if (games.length <= 0) return;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -33,14 +35,11 @@ const SimilarGames = ({ game }: Props) => {
               <GameCardSkeleton />
             </GameCardContainer>
           ))}
-        {data?.pages.map((page, index) => (
-          <React.Fragment key={index}>
-            {page.results.map((game) => (
-              <GameCardContainer key={game.id}>
-                <GameCard game={game} />
-              </GameCardContainer>
-            ))}
-          </React.Fragment>
+
+        {games.map((game) => (
+          <GameCardContainer key={game.id}>
+            <GameCard game={game} />
+          </GameCardContainer>
         ))}
       </SimpleGrid>
 
