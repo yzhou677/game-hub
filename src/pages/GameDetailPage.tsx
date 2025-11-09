@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import GameSwiperGallery from "../components/GameSwiperGallery";
+import RedditPosts from "../components/RedditPosts";
 import SimilarGames from "../components/SimilarGames";
 import useGame from "../hooks/useGame";
 
@@ -68,6 +69,9 @@ const GameDetailPage = () => {
         </SimpleGrid>
         <Box mt={12}>
           <SimilarGames game={game} />
+        </Box>
+        <Box mt={12}>
+          <RedditPosts id={game.id} />
         </Box>
       </Container>
     </>

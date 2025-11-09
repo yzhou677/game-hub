@@ -2,6 +2,7 @@ import Genre from "./Genre";
 import Platform from "./Platform";
 import Publisher from "./Publisher";
 import Rating from "./Rating";
+import Tag from "./Tag";
 
 export default interface Game {
     name: string;
@@ -17,4 +18,6 @@ export default interface Game {
     website: string;
     reviews_count: number;
     ratings: Rating[];
+    tags: Tag[];
+    released: string;
 }

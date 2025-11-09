@@ -20,9 +20,12 @@ class APIClient<T> {
         this.endpoint = endpoint;
     }
 
-    getAll = (config: AxiosRequestConfig) => {
+    getAll = (config: AxiosRequestConfig & { url?: string } = {}) => {
+        const url = config.url ?? this.endpoint;
+        const { url: _omit, ...rest } = config;
+
         return axiosInstance
-            .get<FetchResponse<T>>(this.endpoint, config)
+            .get<FetchResponse<T>>(url, rest)
             .then(res => res.data);
     }
 

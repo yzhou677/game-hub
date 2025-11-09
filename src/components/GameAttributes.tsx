@@ -1,6 +1,7 @@
 import { Box, HStack, Icon, Link, SimpleGrid, Text } from "@chakra-ui/react";
 import Game from "../entities/Game";
 import iconMap from "../entities/IconMap";
+import { formatDate } from "../utils/format";
 import CriticScore from "./CriticScore";
 import DefinitionItem from "./DefinitionItem";
 import RatingBadge from "./RatingBadge";
@@ -38,6 +39,9 @@ const GameAttributes = ({ game }: Props) => {
           {game.publishers.map((publisher) => (
             <Text key={publisher.id}>{publisher.name}</Text>
           ))}
+        </DefinitionItem>
+        <DefinitionItem term="Release date">
+          <Text>{formatDate(game?.released)}</Text>
         </DefinitionItem>
         <DefinitionItem term="Website">
           <Text>

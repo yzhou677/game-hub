@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { Button, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import { formatLongText } from "../utils/format";
 
 interface Props {
   children: string;
@@ -12,7 +13,7 @@ const ExpandableText = ({ children }: Props) => {
   if (!children) return null;
 
   if (children.length <= limit) return <Text>{children}</Text>;
-  const summary = expanded ? children : children.substring(0, limit) + "...";
+  const summary = expanded ? children : formatLongText(limit, children);
 
   return (
     <Text>
