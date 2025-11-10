@@ -7,6 +7,7 @@ import {
   ListItem,
   Spinner,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
@@ -15,6 +16,8 @@ const GenreList = () => {
   const { data, isLoading, error } = useGenres();
   const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
   const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
+
+  const navigate = useNavigate();
 
   if (error) return null;
   if (isLoading) return <Spinner role="status" aria-label="Loading" />;
@@ -38,7 +41,10 @@ const GenreList = () => {
                 whiteSpace="normal"
                 textAlign="left"
                 fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
-                onClick={() => setSelectedGenreId(genre.id)}
+                onClick={() => {
+                  setSelectedGenreId(genre.id);
+                  navigate("/");
+                }}
                 fontSize="lg"
                 variant="link"
               >
