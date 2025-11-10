@@ -5,10 +5,10 @@ import RedditPostCard from "./RedditPostCard";
 
 const RedditPosts = ({ id }: { id: number }) => {
   const { data, error, fetchNextPage, hasNextPage } = useRedditPosts(id);
-  if (error) return;
+  if (error) return null;
 
   const posts = data?.pages.flatMap((p) => p.results) ?? [];
-  if (posts.length <= 0) return;
+  if (posts.length <= 0) return null;
 
   const fetchedGamesCount = posts.length;
 

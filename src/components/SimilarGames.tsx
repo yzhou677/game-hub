@@ -14,7 +14,7 @@ const SimilarGames = ({ game }: Props) => {
     useSimilarGames(game);
 
   const games = data?.pages.flatMap((p) => p.results) ?? [];
-  if (games.length <= 0) return;
+  if (games.length <= 0) return null;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
