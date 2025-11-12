@@ -17,7 +17,8 @@ const useGames = () => {
                 parent_platforms: gameQuery.platformId,
                 ordering: gameQuery.sortOrder,
                 search: gameQuery.searchText,
-                page: pageParam
+                page: pageParam,
+                dates: gameQuery.dates
             }
         }),
         getNextPageParam: (lastPage, allPages) => {

@@ -83,7 +83,7 @@ describe("GameCard", () => {
   it("should render an emoji when the rating of the game is greater than 3 in game card", () => {
     renderComponent();
 
-    if (game.rating_top < 3) {
+    if (game.rating < 3) {
       const emoji = screen.queryByTestId("rating");
       expect(emoji).not.toBeInTheDocument();
     } else {

@@ -14,7 +14,7 @@ const GameAttributes = ({ game }: Props) => {
   return (
     <Box>
       <RatingBadge
-        rating={game.rating_top}
+        rating={Math.round(game.rating)}
         reviewCount={game.reviews_count}
         ratings={game.ratings}
       />

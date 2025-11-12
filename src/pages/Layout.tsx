@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import GenreList from "../components/GenreList";
 import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
 
 const Layout = () => {
   return (
@@ -20,7 +20,7 @@ const Layout = () => {
         >
           <Show above="lg">
             <GridItem area="aside" paddingX={5}>
-              <GenreList />
+              <SideBar />
             </GridItem>
           </Show>
           <GridItem area="main">

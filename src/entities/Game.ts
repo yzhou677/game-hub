@@ -21,4 +21,5 @@ export default interface Game {
     tags: Tag[];
     released: string;
     metacritic_url: string;
+    rating: number;
 }

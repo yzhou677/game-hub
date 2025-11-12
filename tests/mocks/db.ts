@@ -19,6 +19,7 @@ export default interface Game {
     parent_platforms: ParentPlatform[];
     metacritic: number;
     rating_top: number;
+    rating: number;
     added: Date;
     released: Date;
 }
@@ -73,6 +74,7 @@ export const db = factory({
         parent_platforms: manyOf('parentPlatform'),
         metacritic: () => faker.number.int({ min: 80, max: 99 }),
         rating_top: () => faker.number.int({ min: 1, max: 5 }),
+        rating: () => faker.number.int({ min: 1, max: 5 }),
         added: faker.date.recent,
         released: faker.date.past
     }

@@ -25,7 +25,7 @@ const GameCard = ({ game }: Props) => {
         </HStack>
         <Heading fontSize="2xl">
           <Link to={"/games/" + game.slug}>{game.name}</Link>
-          <Emoji rating={game.rating_top} />
+          <Emoji rating={Math.round(game.rating)} />
         </Heading>
       </CardBody>
     </Card>
