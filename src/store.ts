@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ActiveKey } from "./entities/GameDisplayOption";
+import { ActiveKey } from "./constants/gameDisplayOptions";
 
 interface GameQuery {
     genreId?: number;

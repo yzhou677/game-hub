@@ -2,7 +2,7 @@ import { Heading } from "@chakra-ui/react";
 import {
   DisplayMode,
   displayModeTitleMap,
-} from "../entities/GameDisplayOption";
+} from "../constants/gameDisplayOptions";
 import useGenre from "../hooks/useGenre";
 import usePlatform from "../hooks/usePlatform";
 import useGameQueryStore from "../store";
@@ -21,7 +21,7 @@ const GameHeading = () => {
   let heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
 
   if (activeKey && isDisplayMode(activeKey))
-    heading = `${platform?.name || ""} ${displayModeTitleMap[activeKey]} Games`;
+    heading = `${platform?.name || ""} ${displayModeTitleMap[activeKey]}`;
 
   return (
     <Heading as="h1" marginY={5} fontSize="5xl">

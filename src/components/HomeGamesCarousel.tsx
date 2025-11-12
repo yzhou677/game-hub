@@ -11,9 +11,9 @@ import {
 import { useRef } from "react";
 import ImageGallery, { ReactImageGalleryItem } from "react-image-gallery";
 import { useNavigate } from "react-router-dom";
-import { GalleryItem } from "../entities/GalleryItem";
 import Game from "../entities/Game";
 import useGamesDisplay from "../hooks/useGamesDisplay";
+import { GalleryItem } from "../types/galleryItem";
 
 function Thumbnails({ item }: { item: ReactImageGalleryItem }) {
   return (

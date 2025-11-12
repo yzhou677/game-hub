@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
+import { DisplayOptions } from "../constants/gameDisplayOptions";
 import Game from "../entities/Game";
-import { DisplayOptions } from "../entities/GameDisplayOption";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { ymd } from "../utils/datehelpers";
 

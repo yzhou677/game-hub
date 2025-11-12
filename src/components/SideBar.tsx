@@ -11,7 +11,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { createSections } from "../entities/SideBarSections";
+import { createSections } from "../constants/sidebarSections";
 import useGameActions from "../hooks/useGameActions";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";

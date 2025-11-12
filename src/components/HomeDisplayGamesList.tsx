@@ -1,9 +1,9 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
-import Game from "../entities/Game";
 import {
   DisplayMode,
   displayModeTitleMap,
-} from "../entities/GameDisplayOption";
+} from "../constants/gameDisplayOptions";
+import Game from "../entities/Game";
 import useGameActions from "../hooks/useGameActions";
 import useGamesDisplay from "../hooks/useGamesDisplay";
 import GameCardsLayout from "./GameCardsLayout";

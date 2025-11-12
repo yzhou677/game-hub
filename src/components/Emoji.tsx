@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/react";
-import ratingMap from "../entities/RatingMap";
+import ratingMap from "../constants/ratingMaps";
 
 interface Props {
   rating: number;
