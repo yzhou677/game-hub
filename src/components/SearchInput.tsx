@@ -1,8 +1,8 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
-import useGameQueryStore from "../store";
 import { useNavigate } from "react-router-dom";
+import useGameQueryStore from "../store";
 
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -14,7 +14,7 @@ const SearchInput = () => {
       onSubmit={(event) => {
         event.preventDefault();
         if (ref.current) setSearchText(ref.current.value);
-        navigate("/");
+        navigate("/games");
       }}
     >
       <InputGroup>
