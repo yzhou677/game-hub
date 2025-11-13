@@ -1,6 +1,6 @@
 import { HStack, Image, Show } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo.png";
 import SearchInput from "./SearchInput";
 
 const NavBar = () => {
@@ -8,7 +8,12 @@ const NavBar = () => {
     <HStack padding="10px">
       <Show above="sm">
         <Link to="/">
-          <Image src={logo} boxSize="60px" objectFit="cover" />
+          <Image
+            src={logo}
+            boxSize="60px"
+            objectFit="cover"
+            borderRadius="lg"
+          />
         </Link>
       </Show>
       <SearchInput />
