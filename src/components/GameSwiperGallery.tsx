@@ -1,9 +1,9 @@
 import ImageGallery from "react-image-gallery";
-import { GalleryItem } from "../entities/GalleryItem";
 import Screenshot from "../entities/Screenshot";
 import Trailer from "../entities/Trailer";
 import useScreenshots from "../hooks/useScreenshots";
 import useTrailers from "../hooks/useTrailers";
+import { GalleryItem } from "../types/galleryItem";
 
 interface Props {
   gameId: number;

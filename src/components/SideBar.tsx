@@ -1,0 +1,163 @@
+import {
+  Box,
+  Button,
+  Divider,
+  HStack,
+  Heading,
+  Icon,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+} from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { createSections } from "../constants/sidebarSections";
+import useGameActions from "../hooks/useGameActions";
+import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
+import useGameQueryStore from "../store";
+
+const SideBar = () => {
+  const { data, isLoading, error } = useGenres();
+  const actions = useGameActions();
+
+  const genres = data?.results ?? [];
+  const setPreset = useGameQueryStore((s) => s.setPreset);
+  const reset = useGameQueryStore((s) => s.reset);
+  const activeKey = useGameQueryStore((s) => s.gameQuery.activeKey);
+  const isGamesListPage = location.pathname === "/games";
+
+  const handleGenreClick = (id: number) => {
+    setPreset({
+      genreId: id,
+      activeKey: `genre-${id}`,
+    });
+    navigate("/games");
+  };
+
+  const handleAllGamesClick = () => {
+    reset();
+    navigate("/games");
+  };
+
+  const handleHomeClick = () => {
+    reset();
+    navigate("/");
+  };
+
+  const sections = createSections(actions);
+
+  const navigate = useNavigate();
+
+  if (error) return null;
+  if (isLoading) return <Spinner role="status" aria-label="Loading" />;
+  return (
+    <Box>
+      <Box key="home" mb={2}>
+        <Box
+          as="button"
+          onClick={handleHomeClick}
+          _hover={{ color: "gray.300" }}
+          cursor="pointer"
+        >
+          <Heading fontSize="2xl" mb={2} color="white">
+            Home
+          </Heading>
+        </Box>
+      </Box>
+
+      <Box key="allgames" mb={2}>
+        <Box
+          as="button"
+          onClick={handleAllGamesClick}
+          _hover={{ color: "gray.300" }}
+          cursor="pointer"
+        >
+          <Heading fontSize="2xl" mb={2} color="white">
+            All games
+          </Heading>
+        </Box>
+      </Box>
+
+      <Divider my={3} opacity={0.2} />
+
+      {/* New Releases / Top */}
+      {sections.map((sec, idx) => (
+        <Box key={sec.title} mt={idx ? 6 : 0}>
+          <Heading fontSize="2xl" mb={3} color="white">
+            {sec.title}
+          </Heading>
+          <List>
+            {sec.items.map(({ key, label, icon, onClick }) => {
+              const active = isGamesListPage && activeKey === key;
+              return (
+                <ListItem key={key} py="6px">
+                  <HStack>
+                    <Icon
+                      as={icon}
+                      boxSize={6}
+                      color={active ? "blue.300" : "gray.300"}
+                    />
+                    <Button
+                      variant="link"
+                      fontSize="lg"
+                      whiteSpace="normal"
+                      textAlign="left"
+                      color={active ? "blue.300" : "gray.200"}
+                      fontWeight={active ? "bold" : "normal"}
+                      _hover={{ color: "blue.200" }}
+                      onClick={onClick}
+                    >
+                      {label}
+                    </Button>
+                  </HStack>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
+      ))}
+
+      <Divider my={6} opacity={0.2} />
+
+      {/* Genres */}
+      <Box mt={5}>
+        <Heading fontSize="2xl" mb={3} color="white">
+          Genres
+        </Heading>
+        <List>
+          {genres.map((g) => {
+            const active = isGamesListPage && activeKey === `genre-${g.id}`;
+            return (
+              <ListItem key={g.id} py="5px">
+                <HStack>
+                  <Image
+                    boxSize="32px"
+                    borderRadius={8}
+                    objectFit="cover"
+                    src={getCroppedImageUrl(g.image_background)}
+                    alt={g.name}
+                  />
+                  <Button
+                    variant="link"
+                    fontSize="lg"
+                    whiteSpace="normal"
+                    textAlign="left"
+                    color={active ? "blue.300" : "gray.200"}
+                    fontWeight={active ? "bold" : "normal"}
+                    _hover={{ color: "blue.200" }}
+                    onClick={() => handleGenreClick(g.id)}
+                  >
+                    {g.name}
+                  </Button>
+                </HStack>
+              </ListItem>
+            );
+          })}
+        </List>
+      </Box>
+    </Box>
+  );
+};
+
+export default SideBar;

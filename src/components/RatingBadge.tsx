@@ -1,5 +1,5 @@
 import { Circle, Heading, HStack, Image, Text } from "@chakra-ui/react";
-import ratingMap, { ratingsColorMap } from "../entities/RatingMap";
+import ratingMap, { ratingsColorMap } from "../constants/ratingMaps";
 
 const RatingBadge = ({
   rating,
