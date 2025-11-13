@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 
@@ -8,6 +8,7 @@ const Layout = () => {
     <>
       <NavBar />
       <Box maxW="1440px" mx="auto" px={4} py={4}>
+        <ScrollRestoration />
         <Grid
           templateAreas={{
             base: `"main"`,
