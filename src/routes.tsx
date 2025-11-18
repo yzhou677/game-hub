@@ -1,4 +1,5 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
+import RequireAuth from "./components/RequireAuth";
 import ErrorPage from "./pages/ErrorPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import GameDetailPage from "./pages/GameDetailPage";
@@ -26,7 +27,11 @@ export const routes: RouteObject[] = [
       },
       {
         path: "/favorites",
-        element: <FavoritesPage />,
+        element: (
+          <RequireAuth>
+            <FavoritesPage />
+          </RequireAuth>
+        ),
       },
     ],
   },

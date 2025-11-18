@@ -11,7 +11,6 @@ interface Props {
 const FavoriteButton = ({ game, size = "sm" }: Props) => {
   const { user, isFavorite, toggleFavorite } = useFavorite(game);
 
-  // 没登录就不显示按钮
   if (!user) return null;
 
   return (

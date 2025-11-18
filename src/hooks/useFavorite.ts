@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../authstore";
 import type Game from "../entities/Game";
@@ -6,6 +7,7 @@ import favoriteService from "../services/favoriteService";
 const useFavorite = (game: Game) => {
     const user = useAuthStore((s) => s.user);
     const [isFavorite, setIsFavorite] = useState(false);
+    const queryClient = useQueryClient();
 
     useEffect(() => {
         if (!user) {
@@ -35,6 +37,11 @@ const useFavorite = (game: Game) => {
             await favoriteService.addFavorite(user.uid, game);
             setIsFavorite(true);
         }
+
+        queryClient.invalidateQueries({
+            queryKey: ["favorites", user.uid],
+        });
+
     };
     return { isFavorite, toggleFavorite, user };
 };
