@@ -43,7 +43,7 @@ const useGameActions = () => {
 
       setPreset({
         dates: `${y}-01-01,${y}-12-31`,
-        sortOrder: "-rating,-ratings_count",
+        sortOrder: "-suggested",
         activeKey: "bestOfYear",
       });
 
@@ -54,7 +54,7 @@ const useGameActions = () => {
     popularLastYear: () => {
       setPreset({
         dates: `${lastYear}-01-01,${lastYear}-12-31`,
-        sortOrder: "-rating,-ratings_count",
+        sortOrder: "-suggested",
         activeKey: "popularLastYear",
       });
 
@@ -64,7 +64,7 @@ const useGameActions = () => {
     /** All Time 100 */
     allTimeTop100: () => {
       setPreset({
-        sortOrder: "-rating,-ratings_count",
+        sortOrder: "-suggested",
         activeKey: "allTimeTop100",
       });
 

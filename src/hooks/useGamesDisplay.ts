@@ -18,7 +18,7 @@ const useGamesDisplay = (
             switch (mode) {
                 case "bestOfYear":
                     params.dates = `${year}-01-01,${year}-12-31`;
-                    params.ordering = "-rating, -ratings_count";
+                    params.ordering = "-suggested";
                     break;
 
                 case "releasedThisMonth": {
@@ -31,7 +31,7 @@ const useGamesDisplay = (
                 }
 
                 case "allTimeTop100":
-                    params.ordering = "-rating, -ratings_count";
+                    params.ordering = "-suggested";
                     break;
             }
 
@@ -40,6 +40,8 @@ const useGamesDisplay = (
         staleTime: ms("24h"),
         cacheTime: ms("24h"),
         keepPreviousData: true,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
     });
 };
 

@@ -13,7 +13,7 @@ RAWG_BASE_URL = "https://api.rawg.io/api/games"
 
 MAX_GAMES = 200       
 PAGE_SIZE = 40         
-ORDERING = "-rating,-ratings_count"
+ORDERING = "-suggested"
 
 db = firestore.Client()
 
