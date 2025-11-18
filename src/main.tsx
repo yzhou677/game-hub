@@ -4,9 +4,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { RouterProvider } from "react-router-dom";
+import App from "./App";
 import "./index.css";
-import router from "./routes";
 import theme from "./theme";
 
 const queryClient = new QueryClient();
@@ -16,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <App />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ChakraProvider>

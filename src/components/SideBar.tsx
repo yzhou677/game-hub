@@ -11,11 +11,33 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../authstore";
 import { createSections } from "../constants/sidebarSections";
 import useGameActions from "../hooks/useGameActions";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
+
+const NavHeadingButton = ({
+  label,
+  onClick,
+}: {
+  label: string;
+  onClick: () => void;
+}) => (
+  <Box key={label} mb={2}>
+    <Box
+      as="button"
+      onClick={onClick}
+      _hover={{ color: "gray.300" }}
+      cursor="pointer"
+    >
+      <Heading fontSize="2xl" mb={2} color="white">
+        {label}
+      </Heading>
+    </Box>
+  </Box>
+);
 
 const SideBar = () => {
   const { data, isLoading, error } = useGenres();
@@ -26,6 +48,8 @@ const SideBar = () => {
   const reset = useGameQueryStore((s) => s.reset);
   const activeKey = useGameQueryStore((s) => s.gameQuery.activeKey);
   const isGamesListPage = location.pathname === "/games";
+
+  const user = useAuthStore((s) => s.user);
 
   const handleGenreClick = (id: number) => {
     setPreset({
@@ -45,6 +69,11 @@ const SideBar = () => {
     navigate("/");
   };
 
+  const handleFavoritesClick = () => {
+    reset();
+    navigate("/favorites");
+  };
+
   const sections = createSections(actions);
 
   const navigate = useNavigate();
@@ -53,31 +82,13 @@ const SideBar = () => {
   if (isLoading) return <Spinner role="status" aria-label="Loading" />;
   return (
     <Box>
-      <Box key="home" mb={2}>
-        <Box
-          as="button"
-          onClick={handleHomeClick}
-          _hover={{ color: "gray.300" }}
-          cursor="pointer"
-        >
-          <Heading fontSize="2xl" mb={2} color="white">
-            Home
-          </Heading>
-        </Box>
-      </Box>
+      <NavHeadingButton label="Home" onClick={handleHomeClick} />
 
-      <Box key="allgames" mb={2}>
-        <Box
-          as="button"
-          onClick={handleAllGamesClick}
-          _hover={{ color: "gray.300" }}
-          cursor="pointer"
-        >
-          <Heading fontSize="2xl" mb={2} color="white">
-            All games
-          </Heading>
-        </Box>
-      </Box>
+      {user && (
+        <NavHeadingButton label="My Favorites" onClick={handleFavoritesClick} />
+      )}
+
+      <NavHeadingButton label="All games" onClick={handleAllGamesClick} />
 
       <Divider my={3} opacity={0.2} />
 

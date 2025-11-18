@@ -1,6 +1,14 @@
-import { Box, GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  GridItem,
+  Heading,
+  HStack,
+  SimpleGrid,
+  Spinner,
+} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
+import FavoriteButton from "../components/FavoriteButton";
 import GameAttributes from "../components/GameAttributes";
 import GameSwiperGallery from "../components/GameSwiperGallery";
 import RedditPosts from "../components/RedditPosts";
@@ -38,9 +46,10 @@ const GameDetailPage = () => {
       <Box maxW="container.xl" py={6} zIndex={0}>
         <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="start">
           <GridItem>
-            <Heading size="xl" mb={4}>
-              {game.name}
-            </Heading>
+            <HStack justify="space-between" align="center" mb={4}>
+              <Heading size="xl">{game.name}</Heading>
+              <FavoriteButton game={game} size="md" />
+            </HStack>
             <Box
               rounded="2xl"
               overflow="hidden"

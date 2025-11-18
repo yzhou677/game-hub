@@ -1,9 +1,11 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
+import RequireAuth from "./components/RequireAuth";
 import ErrorPage from "./pages/ErrorPage";
+import FavoritesPage from "./pages/FavoritesPage";
 import GameDetailPage from "./pages/GameDetailPage";
+import GamesListPage from "./pages/GamesListPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
-import GamesListPage from "./pages/GamesListPage";
 
 export const routes: RouteObject[] = [
   {
@@ -17,11 +19,19 @@ export const routes: RouteObject[] = [
       },
       {
         path: "games",
-        element: <GamesListPage />
+        element: <GamesListPage />,
       },
       {
         path: "games/:slug",
         element: <GameDetailPage />,
+      },
+      {
+        path: "/favorites",
+        element: (
+          <RequireAuth>
+            <FavoritesPage />
+          </RequireAuth>
+        ),
       },
     ],
   },

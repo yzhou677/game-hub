@@ -26,3 +26,9 @@ dist-ssr
 .vercel
 
 coverage/
+
+# Python rawg sync
+scripts/rawg_sync/.env
+scripts/rawg_sync/service-account.json
+
+.env*
