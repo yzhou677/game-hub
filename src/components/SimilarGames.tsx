@@ -1,4 +1,4 @@
-import { Box, Button, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Button, Heading } from "@chakra-ui/react";
 import Game from "../entities/Game";
 import useSimilarGames from "../hooks/useSimilarGames";
 import GameCardsLayout from "./GameCardsLayout";
@@ -12,7 +12,7 @@ const SimilarGames = ({ game }: Props) => {
     useSimilarGames(game);
 
   const games = data?.pages.flatMap((p) => p.results) ?? [];
-  if (games.length <= 0) return null;
+  if (!isLoading && games.length <= 0) return null;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
