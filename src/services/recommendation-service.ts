@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAuth, User } from "firebase/auth";
-import { RecommendedGame } from "../entities/RecommendedGame";
+import { RecommendationResponse } from "../entities/RecommendedGame";
 
 const backendAxios = axios.create({
     baseURL: "https://api-qai26z4joq-uc.a.run.app",
@@ -23,10 +23,6 @@ backendAxios.interceptors.request.use(async (config) => {
     return config;
 });
 
-export interface RecommendResponse {
-    recommendations: RecommendedGame[];
-}
-
 class RecommendationClient {
     endpoint: string;
 
@@ -36,7 +32,7 @@ class RecommendationClient {
 
     recommend = (favorites: string[]) => {
         return backendAxios
-            .post<RecommendResponse>(this.endpoint, { favorites })
+            .post<RecommendationResponse>(this.endpoint, { favorites })
             .then((res) => res.data);
     };
 }

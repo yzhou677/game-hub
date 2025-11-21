@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { RecommendedGame } from "../entities/RecommendedGame";
+import { RecommendationResponse } from "../entities/RecommendedGame";
 import recommendationClient from "../services/recommendation-service";
 
 const useRecommendations = (favorites: string[]) => {
     const stableKey = JSON.stringify([...favorites].sort());
 
-    return useQuery<RecommendedGame[], Error>({
+    return useQuery<RecommendationResponse, Error>({
         queryKey: ["recommendations", stableKey],
-
         queryFn: async () => {
             if (!favorites || favorites.length === 0)
-                return [];
+                return { summary: "", recommendations: [] };
 
             const res = await recommendationClient.recommend(favorites);
-            return res.recommendations;
+            return res;
         },
         enabled: favorites.length > 0,
         staleTime: Infinity,
