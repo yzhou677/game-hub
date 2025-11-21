@@ -20,7 +20,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     setInitializing: (v) => set({ initializing: v }),
 
     loginWithGoogle: async () => {
-        await signInWithPopup(auth, googleProvider);
+        const result = await signInWithPopup(auth, googleProvider);
+        set({ user: result.user });
     },
 
     logout: async () => {
