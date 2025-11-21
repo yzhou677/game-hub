@@ -24,7 +24,7 @@ const useGames = () => {
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.next ? allPages.length + 1 : undefined;
         }, //react query uses this function to compute next page number
-        staleTime: ms('24h'), //24h
+        staleTime: ms("24h"), //24h
         cacheTime: ms("24h"),
     });
 };

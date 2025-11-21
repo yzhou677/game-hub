@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "../authstore";
 import Game from "../entities/Game";
-import favoriteService from "../services/favoriteService";
+import favoriteService from "../services/favorite-service";
 
 const useFavorites = () => {
     const user = useAuthStore((s) => s.user);

@@ -35,7 +35,7 @@ const useSimilarGames = (game: Game) => {
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.next ? allPages.length + 1 : undefined;
         },
-        staleTime: ms('12h')
+        staleTime: ms("12h")
     });
 }
 

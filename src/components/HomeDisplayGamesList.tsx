@@ -20,7 +20,7 @@ const HomeDisplayGamesList = ({ displayMode }: Props) => {
   if (error) throw error;
 
   const games: Game[] = data?.results ?? [];
-  if (isLoading || games.length <= 0) return null;
+  if (!isLoading && games.length <= 0) return null;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   const title = displayModeTitleMap[displayMode];
