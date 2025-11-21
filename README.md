@@ -9,15 +9,19 @@ Users can select favorite games, and the backend (a Firebase Cloud Functions ser
 - A global summary explaining why these games match the user's taste  
 - Individual reasoning for each recommended title  
 
-The recommendations are strictly chosen from a curated RAWG dataset, and validated with a JSON schema to prevent hallucinated or invalid results.
+All recommendations are strictly chosen from a curated RAWG dataset and validated with JSON schema to prevent hallucinated or invalid results.
+
+> **Note:**  
+> The recommendation feature is currently restricted to my developer account only for traffic protection.  
+> Please refer to the screenshots below for how the feature works.
 
 This project is based on Vite and utilizes Chakra UI for styling, Zustand for state management, Axios for communication to the backend, Vercel for deployment, etc.
 
 You can find the working project at:  
 https://game-hub-mauve-pi.vercel.app/
 
-The backend repository is located at:  
-https://github.com/yzhou677/game-hub-backend
+The backend repository (access restricted to my GitHub account only) is located at:  
+https://github.com/yzhou677/gamehub-backend
 
 ## Screenshots
 
