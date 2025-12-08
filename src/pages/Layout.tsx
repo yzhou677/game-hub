@@ -1,6 +1,7 @@
 import {
   Box,
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerOverlay,
   Grid,
@@ -21,8 +22,10 @@ const Layout = () => {
 
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent bg="gray.900" p={4}>
-          <SideBar />
+        <DrawerContent bg="gray.900">
+          <DrawerBody p={4} maxH="100vh">
+            <SideBar />
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
 
