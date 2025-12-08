@@ -1,12 +1,31 @@
-import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
+import {
+  Box,
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
+  Grid,
+  GridItem,
+  Show,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 
 const Layout = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
-      <NavBar />
+      <NavBar onOpenMenu={onOpen} />
+
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent bg="gray.900" p={4}>
+          <SideBar />
+        </DrawerContent>
+      </Drawer>
+
       <Box maxW="1440px" mx="auto" px={4} py={4}>
         <ScrollRestoration />
         <Grid
@@ -24,6 +43,7 @@ const Layout = () => {
               <SideBar />
             </GridItem>
           </Show>
+
           <GridItem area="main">
             <Outlet />
           </GridItem>

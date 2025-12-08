@@ -2,17 +2,24 @@ import {
   Button,
   Grid,
   GridItem,
+  HStack,
+  IconButton,
   Image,
   Show,
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useAuthStore } from "../authstore";
 import SearchInput from "./SearchInput";
 
-const NavBar = () => {
+interface Props {
+  onOpenMenu?: () => void;
+}
+
+const NavBar = ({ onOpenMenu }: Props) => {
   const user = useAuthStore((s) => s.user);
   const loginWithGoogle = useAuthStore((s) => s.loginWithGoogle);
   const logout = useAuthStore((s) => s.logout);
@@ -25,16 +32,27 @@ const NavBar = () => {
       padding="10px"
     >
       <GridItem>
-        <Show above="sm">
-          <Link to="/">
-            <Image
-              src={logo}
-              boxSize="60px"
-              objectFit="cover"
-              borderRadius="lg"
+        <HStack>
+          {onOpenMenu && (
+            <IconButton
+              aria-label="Open menu"
+              icon={<GiHamburgerMenu />}
+              onClick={onOpenMenu}
+              variant="ghost"
+              display={{ base: "inline-flex", lg: "none" }}
             />
-          </Link>
-        </Show>
+          )}
+          <Show above="lg">
+            <Link to="/">
+              <Image
+                src={logo}
+                boxSize="60px"
+                objectFit="cover"
+                borderRadius="lg"
+              />
+            </Link>
+          </Show>
+        </HStack>
       </GridItem>
 
       <GridItem>
