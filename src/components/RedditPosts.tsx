@@ -13,7 +13,7 @@ const RedditPosts = ({ id }: { id: number }) => {
   const fetchedGamesCount = posts.length;
 
   return (
-    <Box>
+    <Box maxW="100%" overflowX="hidden">
       <Heading size="lg" mb={4} color="white" textAlign="center">
         Posts from Subreddit
       </Heading>
@@ -22,8 +22,9 @@ const RedditPosts = ({ id }: { id: number }) => {
         hasMore={!!hasNextPage}
         next={() => fetchNextPage()}
         loader={<Spinner />}
+        style={{ overflowX: "hidden" }}
       >
-        <VStack spacing={6} align="stretch">
+        <VStack spacing={6} align="stretch" maxW="100%">
           {posts.map((p) => {
             return <RedditPostCard redditPost={p} key={p.id} />;
           })}

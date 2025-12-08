@@ -21,7 +21,7 @@ const RedditPostCard = ({ redditPost }: Props) => {
   context = context.length > limit ? formatLongText(limit, context) : context;
 
   return (
-    <Link href={href} _hover={{ textDecoration: "none" }}>
+    <Link href={href} _hover={{ textDecoration: "none" }} w="100%" maxW="100%">
       <Box
         bg="blackAlpha.600"
         border="1px solid"
@@ -29,22 +29,39 @@ const RedditPostCard = ({ redditPost }: Props) => {
         rounded="xl"
         p={6}
         shadow="xl"
+        w="100%"
+        maxW="100%"
+        overflowX="hidden"
       >
-        <HStack justify="space-between" mb={3}>
-          <Heading size="lg" color="white">
+        <HStack justify="space-between" mb={3} maxW="100%">
+          <Heading
+            size="lg"
+            color="white"
+            wordBreak="break-word"
+            minW={0}
+            maxW="100%"
+          >
             {title}
           </Heading>
         </HStack>
 
         {body && (
-          <Text color="whiteAlpha.800" mb={3}>
+          <Text
+            color="whiteAlpha.800"
+            mb={3}
+            wordBreak="break-word"
+            minW={0}
+            maxW="100%"
+          >
             {context}
           </Text>
         )}
 
-        <HStack justify="space-between" mb={3}>
-          <Avatar name={author} size="sm" />
-          <Text color="whiteAlpha.700">{author}</Text>
+        <HStack justify="space-between" mb={3} spacing={3} flexWrap="wrap">
+          <HStack spacing={2}>
+            <Avatar name={author} size="sm" />
+            <Text color="whiteAlpha.700">{author}</Text>
+          </HStack>
           <Text color="whiteAlpha.500">{formatDate(created)}</Text>
         </HStack>
       </Box>
