@@ -10,7 +10,7 @@ import {
   ListItem,
   Spinner,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../authstore";
 import { createSections } from "../constants/sidebarSections";
 import useGameActions from "../hooks/useGameActions";
@@ -40,6 +40,9 @@ const NavHeadingButton = ({
 );
 
 const SideBar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const { data, isLoading, error } = useGenres();
   const actions = useGameActions();
 
@@ -75,8 +78,6 @@ const SideBar = () => {
   };
 
   const sections = createSections(actions);
-
-  const navigate = useNavigate();
 
   if (error) return null;
   if (isLoading) return <Spinner role="status" aria-label="Loading" />;

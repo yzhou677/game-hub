@@ -63,7 +63,7 @@ const GameDetailPage = () => {
             </Box>
           </GridItem>
 
-          <GridItem display={{ base: "none", md: "block" }}>
+          <GridItem display="block">
             <Box>
               <GameAttributes game={game} />
             </Box>

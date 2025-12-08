@@ -18,6 +18,10 @@ const useRecommendations = (favorites: string[]) => {
         },
         enabled: !!user && favorites.length > 0,
         staleTime: Infinity,
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        refetchOnMount: false,
         retry: 1
     });
 }
