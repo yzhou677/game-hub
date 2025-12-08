@@ -74,18 +74,19 @@ const GameSwiperGallery = ({ gameId }: Props) => {
   const trailerItems = trailers?.results;
   let items: GalleryItem[] = screenshotsItems;
 
-  if (trailerItems) {
-    trailerItems.forEach((trailer) => {
+  if (trailerItems?.length) {
+    const trailerGalleryItems: GalleryItem[] = trailerItems.map((trailer) => {
       const trailerSrc = trailer.data[480];
-      const trailerItem: GalleryItem = {
+
+      return {
         original: trailer.preview || trailerSrc,
         thumbnail: trailer.preview || trailerSrc,
         description: "game screenshots",
         originalClass: "bg-black",
         renderItem: () => <VideoSlide item={trailer} />,
       };
-      items = [trailerItem, ...screenshotsItems];
     });
+    items = [...trailerGalleryItems, ...screenshotsItems];
   }
 
   return (
