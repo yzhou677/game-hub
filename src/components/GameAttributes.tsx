@@ -10,6 +10,8 @@ interface Props {
   game: Game;
 }
 
+const isValidUrl = (url?: string | null) => !!url && url.startsWith("http");
+
 const GameAttributes = ({ game }: Props) => {
   return (
     <Box>
@@ -47,20 +49,24 @@ const GameAttributes = ({ game }: Props) => {
         <DefinitionItem term="Release date">
           <Text>{formatDate(game?.released)}</Text>
         </DefinitionItem>
-        <DefinitionItem term="Website">
-          <Text>
-            <Link href={game.website} color="teal.300" isExternal>
-              {game.name}
-            </Link>
-          </Text>
-        </DefinitionItem>
-        <DefinitionItem term="Metacritic Review">
-          <Text>
-            <Link href={game.metacritic_url} color="teal.300" isExternal>
-              Review of {game.name}
-            </Link>
-          </Text>
-        </DefinitionItem>
+        {isValidUrl(game.website) && (
+          <DefinitionItem term="Website">
+            <Text>
+              <Link href={game.website} color="teal.300" isExternal>
+                {game.name}
+              </Link>
+            </Text>
+          </DefinitionItem>
+        )}
+        {isValidUrl(game.metacritic_url) && (
+          <DefinitionItem term="Metacritic Review">
+            <Text>
+              <Link href={game.metacritic_url} color="teal.300" isExternal>
+                Review of {game.name}
+              </Link>
+            </Text>
+          </DefinitionItem>
+        )}
       </SimpleGrid>
     </Box>
   );
