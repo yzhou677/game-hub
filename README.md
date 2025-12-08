@@ -21,7 +21,7 @@ You can find the working project at:
 https://game-hub-mauve-pi.vercel.app/
 
 The backend repository (access restricted to my GitHub account only) is located at:  
-https://github.com/yzhou677/gamehub-backend
+https://github.com/yzhou677/game-hub-backend
 
 ## Screenshots
 
