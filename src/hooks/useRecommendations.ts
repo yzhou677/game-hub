@@ -18,7 +18,7 @@ const useRecommendations = (favorites: string[]) => {
         },
         enabled: !!user && favorites.length > 0,
         staleTime: Infinity,
-        gcTime: Infinity,
+        cacheTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnReconnect: false,
         refetchOnMount: false,
