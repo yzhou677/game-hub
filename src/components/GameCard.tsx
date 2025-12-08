@@ -13,29 +13,44 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card>
-      <Box position="relative">
-        <Image src={getCroppedImageUrl(game.background_image)} alt="Game" />
+    <Box
+      as={Link}
+      to={`/games/${game.slug}`}
+      _hover={{ textDecoration: "none" }}
+    >
+      <Card>
+        <Box position="relative">
+          <Image src={getCroppedImageUrl(game.background_image)} alt="Game" />
 
-        <Box position="absolute" bottom="8px" right="8px">
-          <FavoriteButton game={game} size="sm" />
+          <Box
+            position="absolute"
+            bottom="8px"
+            right="8px"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <FavoriteButton game={game} size="sm" />
+          </Box>
         </Box>
-      </Box>
-      <CardBody>
-        <HStack justifyContent="space-between" marginBottom={3}>
-          {game.parent_platforms && (
-            <PlatformIconList
-              platforms={game.parent_platforms.map((p) => p.platform)}
-            />
-          )}
-          <CriticScore score={game.metacritic} />
-        </HStack>
-        <Heading fontSize="2xl">
-          <Link to={"/games/" + game.slug}>{game.name}</Link>
-          <Emoji rating={Math.round(game.rating)} />
-        </Heading>
-      </CardBody>
-    </Card>
+
+        <CardBody>
+          <HStack justifyContent="space-between" marginBottom={3}>
+            {game.parent_platforms && (
+              <PlatformIconList
+                platforms={game.parent_platforms.map((p) => p.platform)}
+              />
+            )}
+            <CriticScore score={game.metacritic} />
+          </HStack>
+          <Heading fontSize="2xl">
+            {game.name}
+            <Emoji rating={Math.round(game.rating)} />
+          </Heading>
+        </CardBody>
+      </Card>
+    </Box>
   );
 };
 
