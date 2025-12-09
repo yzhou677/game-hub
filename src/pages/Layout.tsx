@@ -9,18 +9,12 @@ import {
   Show,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (isOpen) onClose();
-  }, [location.pathname]);
 
   return (
     <>
@@ -30,7 +24,7 @@ const Layout = () => {
         <DrawerOverlay />
         <DrawerContent bg="gray.900">
           <DrawerBody p={4} maxH="100vh">
-            <SideBar />
+            <SideBar onNavigate={onClose} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
