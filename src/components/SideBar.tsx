@@ -17,6 +17,7 @@ import useGameActions from "../hooks/useGameActions";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
+import NsfwToggle from "./NsfwToggle";
 
 const NavHeadingButton = ({
   label,
@@ -39,7 +40,7 @@ const NavHeadingButton = ({
   </Box>
 );
 
-const SideBar = () => {
+const SideBar = ({ onNavigate }: { onNavigate?: () => void }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -60,21 +61,25 @@ const SideBar = () => {
       activeKey: `genre-${id}`,
     });
     navigate("/games");
+    onNavigate?.();
   };
 
   const handleAllGamesClick = () => {
     reset();
     navigate("/games");
+    onNavigate?.();
   };
 
   const handleHomeClick = () => {
     reset();
     navigate("/");
+    onNavigate?.();
   };
 
   const handleFavoritesClick = () => {
     reset();
     navigate("/favorites");
+    onNavigate?.();
   };
 
   const sections = createSections(actions);
@@ -90,6 +95,10 @@ const SideBar = () => {
       )}
 
       <NavHeadingButton label="All games" onClick={handleAllGamesClick} />
+
+      <Divider my={3} opacity={0.2} />
+
+      <NsfwToggle />
 
       <Divider my={3} opacity={0.2} />
 
@@ -118,7 +127,10 @@ const SideBar = () => {
                       color={active ? "blue.300" : "gray.200"}
                       fontWeight={active ? "bold" : "normal"}
                       _hover={{ color: "blue.200" }}
-                      onClick={onClick}
+                      onClick={() => {
+                        onClick();
+                        onNavigate?.();
+                      }}
                     >
                       {label}
                     </Button>

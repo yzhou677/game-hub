@@ -24,7 +24,7 @@ const Layout = () => {
         <DrawerOverlay />
         <DrawerContent bg="gray.900">
           <DrawerBody p={4} maxH="100vh">
-            <SideBar />
+            <SideBar onNavigate={onClose} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -34,7 +34,7 @@ const Layout = () => {
         <Grid
           templateAreas={{
             base: `"main"`,
-            lg: `"aside main"`, // 1024px
+            lg: `"aside main"`,
           }}
           templateColumns={{
             base: "1fr",
