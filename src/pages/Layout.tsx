@@ -20,7 +20,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (isOpen) onClose();
-  }, [location.pathname, isOpen, onClose]);
+  }, [location.pathname]);
 
   return (
     <>
