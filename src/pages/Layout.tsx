@@ -9,12 +9,18 @@ import {
   Show,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 
 const Layout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isOpen) onClose();
+  }, [location.pathname, isOpen, onClose]);
 
   return (
     <>
@@ -34,7 +40,7 @@ const Layout = () => {
         <Grid
           templateAreas={{
             base: `"main"`,
-            lg: `"aside main"`, // 1024px
+            lg: `"aside main"`,
           }}
           templateColumns={{
             base: "1fr",
