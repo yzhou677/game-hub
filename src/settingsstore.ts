@@ -6,6 +6,6 @@ interface SettingsState {
 }
 
 export const useSettingsStore = create<SettingsState>((set) => ({
-    hideNsfw: true,
+    hideNsfw: false,
     setHideNsfw: (value) => set({ hideNsfw: value })
 }));

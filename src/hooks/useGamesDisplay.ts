@@ -3,17 +3,23 @@ import ms from "ms";
 import { DisplayOptions } from "../constants/gameDisplayOptions";
 import Game from "../entities/Game";
 import APIClient, { FetchResponse } from "../services/api-client";
+import { useSettingsStore } from "../settingsstore";
 import { ymd } from "../utils/datehelpers";
 
 const apiClient = new APIClient<Game>("/games");
+const NSFW_MULTIPLIER = 4;
 
 const useGamesDisplay = (
     { mode, count = 8, year = new Date().getFullYear() }: DisplayOptions
 ) => {
+    const hideNsfw = useSettingsStore((s) => s.hideNsfw);
+
     return useQuery<FetchResponse<Game>, Error>({
-        queryKey: ["gamesDisplayList", mode, count, year],
+        queryKey: ["gamesDisplayList", mode, count, year, hideNsfw],
         queryFn: () => {
-            const params: Record<string, any> = { page_size: count };
+            const effectivePageSize = hideNsfw ? count * NSFW_MULTIPLIER : count;
+
+            const params: Record<string, any> = { page_size: effectivePageSize };
 
             switch (mode) {
                 case "bestOfYear":
@@ -35,7 +41,10 @@ const useGamesDisplay = (
                     break;
             }
 
-            return apiClient.getAll({ params });
+            return apiClient.getAll({ params }, { hideNsfw }).then((data) => ({
+                ...data,
+                results: data.results.slice(0, count),
+            }));;
         },
         staleTime: ms("24h"),
         cacheTime: ms("24h"),

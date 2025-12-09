@@ -17,6 +17,7 @@ import useGameActions from "../hooks/useGameActions";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
+import NsfwToggle from "./NsfwToggle";
 
 const NavHeadingButton = ({
   label,
@@ -90,6 +91,10 @@ const SideBar = () => {
       )}
 
       <NavHeadingButton label="All games" onClick={handleAllGamesClick} />
+
+      <Divider my={3} opacity={0.2} />
+
+      <NsfwToggle />
 
       <Divider my={3} opacity={0.2} />
 

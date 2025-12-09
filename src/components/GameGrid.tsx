@@ -28,7 +28,7 @@ const GameGrid = () => {
   const more =
     !!hasNextPage && (!isTopMode(activeKey) ? true : allGames.length < LIMIT);
 
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
   return (
     <InfiniteScroll
